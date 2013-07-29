@@ -12,7 +12,8 @@ gem "bibtex-ruby", "2.3.2"
 gem 'rdf'
 gem 'multi_json'
 gem 'json'
-gem 'citeproc-ruby', :git => 'git://github.com/inukshuk/citeproc-ruby.git'
+#gem 'citeproc-ruby', :git => 'git://github.com/inukshuk/citeproc-ruby.git'
+gem "citeproc-ruby"
 gem "racksh"
 
 group :test do

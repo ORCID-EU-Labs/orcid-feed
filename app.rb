@@ -10,7 +10,7 @@ require 'builder'
 require 'rdiscount'
 require 'bibtex'
 require 'rdf'
-require 'citeproc/ruby'
+require 'citeproc'
 require 'multi_json'
 
 Sinatra::Application.register Sinatra::RespondTo
@@ -53,6 +53,6 @@ get '/:orcid' do
     format.rss { builder :show }
     format.bib { @profile.works }
     format.json { @profile.works.to_citeproc.to_json }
-    format.txt { @profile.works.map { |work| CiteProc.process(work.to_citeproc) }.join("\n") }
+    format.txt { @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => :apa) }.join("\n") }
   end
 end
