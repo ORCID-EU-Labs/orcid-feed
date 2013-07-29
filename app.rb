@@ -60,7 +60,7 @@ get '/:orcid' do
     format.json { @profile.works.to_citeproc.to_json }
     format.txt do
       default = lambda { :apa }
-      style = STYLES.detect(default) { |s| s == params[:style].to_sym }
+      style = STYLES.detect(default) { |style| style.to_s == params[:style] }
       @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => style) }.join("\n")
     end
   end
