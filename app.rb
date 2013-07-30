@@ -32,6 +32,7 @@ configure do
 
   mime_type :bib, 'application/x-bibtex'
   mime_type :txt, 'text/x-bibliography'
+  mime_type :yml, 'application/x-yaml'
 
   file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
   file.sync = true
@@ -57,7 +58,9 @@ get '/:orcid' do
     end
     format.rss { builder :show }
     format.bib { @profile.works }
+    format.xml { @profile.works.to_xml(:extended => true) }
     format.json { @profile.works.to_citeproc.to_json }
+    format.yml { @profile.works.to_citeproc.to_yaml }
     format.txt do
       default = lambda { :apa }
       style = STYLES.detect(default) { |style| style.to_s == params[:style] }
