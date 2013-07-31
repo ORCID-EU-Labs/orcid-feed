@@ -56,6 +56,8 @@ Many requests for ORCID content in different formats will be made by web browers
 
     $ curl http://feed.labs.orcid-eu.org/0000-0002-1825-0097.json
 
+    $ curl http://feed.labs.orcid-eu.org/0000-0002-1825-0097?format=json
+
 ### Response Codes
 
 <table class="table">
@@ -64,7 +66,6 @@ Many requests for ORCID content in different formats will be made by web browers
 </thead>
 <tbody>
 <tr><td>200</td><td>The request was OK.</td></tr>
-<tr><td>204</td><td>The request was OK but there was no metadata available.</td></tr>
 <tr><td>404</td><td>The ORCID requested doesn't exist.</td></tr>
 <tr><td>406</td><td>Can't serve the requested content type.</td></tr>
 </tbody>
@@ -79,7 +80,6 @@ ORCID Feed currently supports the content types listed below. Most of them are a
 <tr><th>Format</th><th>Extension</th><th>Content Type</th><th>ORCID</th><th>CrossRef</th><th>DataCite</th></tr>
 </thead>
 <tbody>
-<tr><td><a href='http://www.w3.org/TR/rdf-syntax-grammar/'>RDF XML</a></td><td>.rdf</td><td>application/rdf+xml</td><td><span class='label label-success'>Yes</span></td><td><span class='label label-success'>Yes</span></td><td><span class='label label-success'>Yes</span></td></tr>
 <tr><td><a href='http://web.resource.org/rss/1.0/spec'>RSS 1.0</a></td><td>.rss</td><td>application/rss+xml</td><td><span class='label label-success'>Yes</span></td><td><span class='label'>No</span></td><td><span class='label'>No</span></td></tr>
 <tr><td><a href='http://gsl-nagoya-u.net/http/pub/citeproc-doc.html'>Citeproc JSON</a></td><td>.json</td><td>application/json</td><td><span class='label label-success'>Yes</span></td><td><span class='label label-success'>Yes</span></td><td><span class='label label-success'>Yes</span></td></tr>
 <tr><td><a href='http://gsl-nagoya-u.net/http/pub/citeproc-doc.html'>Citeproc YAML</a></td><td>.yml</td><td>application/x-yaml</td><td><span class='label label-success'>Yes</span></td><td><span class='label'>No</span></td><td><span class='label'>No</span></td></tr>

@@ -22,11 +22,11 @@ class Profile
     @orcid = orcid
     @created_at = Time.at(result['orcid-history']['submission-date']['value']/1000).utc.to_datetime
     @updated_at =Time.at(result['orcid-history']['last-modified-date']['value']/1000).utc.to_datetime
-    @biography = result['orcid-bio']['biography'] ? result['orcid-bio']['biography']['value'] : nil 
+    @biography = result['orcid-bio']['biography'] ? result['orcid-bio']['biography']['value'] : nil
     @given_names = result['orcid-bio']['personal-details']["given-names"]["value"]
     @family_name = result['orcid-bio']['personal-details']["family-name"].nil? ? "" : result['orcid-bio']['personal-details']["family-name"]["value"]
     @credit_name = result['orcid-bio']['personal-details']['credit-name'] ? result['orcid-bio']['personal-details']['credit-name']['value'] : nil
-    
+
     if result["orcid-activities"] and result["orcid-activities"]["orcid-works"]["orcid-work"]
       works = result["orcid-activities"]["orcid-works"]["orcid-work"].map { |work| Work.new(work, reversed_name) }.uniq
       works = works.join("\n")
@@ -51,5 +51,21 @@ class Profile
   def reversed_name
     [family_name, given_names].join(", ")
   end
-  
+
+  def to_bib
+    works
+  end
+
+  def to_xml
+    to_bib.to_xml(:extended => true)
+  end
+
+  def to_json
+    to_bib.to_citeproc.to_json
+  end
+
+  def to_yaml
+    to_bib.to_citeproc.to_yaml
+  end
+
 end

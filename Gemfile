@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'sinatra'
+gem "sinatra", "~> 1.3.6"
 gem 'sinatra-contrib'
 gem 'sinatra-respond_to'
 gem 'faraday'

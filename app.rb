@@ -44,19 +44,21 @@ get '/' do
 end
 
 get '/:orcid' do
-  redirect '/' unless is_orcid?(params[:orcid])
-
-  @profile = Profile.new(params[:orcid])
+  unless is_orcid?(params[:orcid]) && @profile = Profile.new(params[:orcid])
+    error 404
+  end
 
   respond_to do |format|
-    format.html do
-      redirect "http://orcid.org/#{params[:orcid]}", 301
-    end
+    format.html { redirect "http://orcid.org/#{params[:orcid]}", 301 }
     format.rss { builder :show }
-    format.bib { @profile.works }
-    format.xml { @profile.works.to_xml(:extended => true) }
-    format.json { @profile.works.to_citeproc.to_json }
-    format.yml { @profile.works.to_citeproc.to_yaml }
+    format.bib { @profile.to_bib }
+    format.xml { @profile.to_xml }
+    format.json { @profile.to_json }
+    format.yml { @profile.to_yaml }
     format.txt { @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => get_csl(params[:style])) }.join("\n") }
   end
+end
+
+not_found do
+  erb "The requested ORCID was not found."
 end
