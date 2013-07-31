@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The ORCID Registry provides information in a user's profile as webpage or via API. The ORCID API currently supports the standard XML and JSON format. ORCID Feed provides profile information in additional formats by parsing and translating the JSON response from the ORCID public API.
+The ORCID Registry provides information in a user's profile as webpage or via API. The ORCID API currently supports the standard XML and JSON formats. ORCID Feed provides profile information in additional formats by parsing and translating the JSON response from the ORCID public API.
 
 ORCID Feed is inspired by the [content negotiation for DOIs](http://crosscite.org/cn/) provided by CrossRef and DataCite, and ORCID Feeds uses many of their concepts, as well as language on this page.
 
@@ -90,7 +90,7 @@ ORCID Feed currently supports the content types listed below. Most of them are a
 
 ## Formatted Citations
 
-ORCID Feed supports formatted citations via the text/bibliography content type. These are the output of the Citation Style Language processor citeproc-ruby. The content type can take an additional parameters to customise its response format. A "style" can be chosen from the list of style names found in the [CSL style repository](https://github.com/citation-style-language/styles/). Many styles are supported, including common styles such as **apa** and **mla**:
+ORCID Feed supports formatted citations via the text/bibliography content type. These are the output of the Citation Style Language processor citeproc-ruby. The content type can take an additional parameters to customise its response format. A "style" can be chosen from the list of style names found in the [CSL style repository](https://github.com/citation-style-language/styles/). All 3000+ styles in the CSL style repository are supported, including common styles such as **apa**, **mla** and **vancouver**:
 
     $ curl -LH "Accept: text/x-bibliography; style=apa" http://feed.labs.orcid-eu.org/0000-0002-1825-0097
 
@@ -99,6 +99,10 @@ ORCID Feed supports formatted citations via the text/bibliography content type. 
     Carberry, J. (2011). The Impact of Interactive Epistemologies on Cryptography. Journal of Psychoceramics, 8(11), 1-3. doi:10.5555/987654321
     Carberry, J. (2008). Developing Thin Clients Using Amphibious Epistemologies. Journal of Psychoceramics, 5(11), 1-3. doi:10.5555/12345679
     Carberry, J. (2008). Toward a Unified Theory of High-Energy Metaphysics: Silly String Theory. Journal of Psychoceramics, 5(11), 1-3. doi:10.5555/12345678
+
+## Are the data the same as in the response from the ORCID API?
+
+Almost. ORCID Feed removes duplicate works based on `title` and `year. And it doesn't use all information received from the ORCID API, the focus is on structured bibliographic metadata.
 
 ## Getting Help
 
