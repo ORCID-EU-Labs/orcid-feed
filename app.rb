@@ -20,15 +20,16 @@ require_relative 'lib/profile'
 require_relative 'lib/bibliography'
 require_relative 'lib/work'
 
-STYLES = Set[:apa, 
-             :mla, 
-             :vancouver, 
+STYLES = Set[:apa,
+             :mla,
+             :vancouver,
              :chicago_author_date]
 
 configure do
   config_file 'config/settings.yml'
 
   #set :environment, :development
+  set :markdown, :layout_engine => :erb, :layout => :layout
 
   mime_type :bib, 'application/x-bibtex'
   mime_type :txt, 'text/x-bibliography'
@@ -44,7 +45,7 @@ configure :development do
 end
 
 get '/' do
-  markdown :index, :layout_engine => :erb
+  markdown :index
 end
 
 get '/:orcid' do
