@@ -20,11 +20,6 @@ require_relative 'lib/profile'
 require_relative 'lib/bibliography'
 require_relative 'lib/work'
 
-STYLES = Set[:apa,
-             :mla,
-             :vancouver,
-             :chicago_author_date]
-
 configure do
   config_file 'config/settings.yml'
 
@@ -62,10 +57,6 @@ get '/:orcid' do
     format.xml { @profile.works.to_xml(:extended => true) }
     format.json { @profile.works.to_citeproc.to_json }
     format.yml { @profile.works.to_citeproc.to_yaml }
-    format.txt do
-      default = lambda { :apa }
-      style = STYLES.detect(default) { |style| style.to_s == params[:style] }
-      @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => style) }.join("\n")
-    end
+    format.txt { @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => get_csl(params[:style])) }.join("\n") }
   end
 end

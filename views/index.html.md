@@ -90,7 +90,7 @@ ORCID Feed currently supports the content types listed below. Most of them are a
 
 ## Formatted Citations
 
-ORCID Feed supports formatted citations via the text/bibliography content type. These are the output of the Citation Style Language processor citeproc-ruby. The content type can take an additional parameters to customise its response format. A "style" can be chosen from the list of style names found in the CSL style repository. Many styles are supported, including common styles such as **apa** and **mla**:
+ORCID Feed supports formatted citations via the text/bibliography content type. These are the output of the Citation Style Language processor citeproc-ruby. The content type can take an additional parameters to customise its response format. A "style" can be chosen from the list of style names found in the [CSL style repository](https://github.com/citation-style-language/styles/). Many styles are supported, including common styles such as **apa** and **mla**:
 
     $ curl -LH "Accept: text/x-bibliography; style=apa" http://feed.labs.orcid-eu.org/0000-0002-1825-0097
 
