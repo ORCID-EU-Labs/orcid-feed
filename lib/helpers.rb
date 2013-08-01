@@ -8,7 +8,15 @@ helpers do
   end
 
   def get_csl(style)
-    response = Faraday.get "https://raw.github.com/citation-style-language/styles/master/#{style}.csl"
-    style = response.status == 200 ? response.body : "apa"
+    return "apa" if ["apa", "", nil].include? style
+
+    response = Faraday.get "http://www.zotero.org/styles/#{style}"
+    return "apa" unless response.status == 200
+
+    parent  = Nokogiri::XML(response.body).at_css('link[rel="independent-parent"]')
+    return response.body unless parent
+
+    style = File.basename(parent["href"])
+    get_csl(style)
   end
 end
