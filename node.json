@@ -3,7 +3,6 @@
     "recipe[apt]",
     "recipe[build-essential]",
     "recipe[git]",
-    "recipe[phantomjs]",
     "recipe[orcid-feed]"
   ],
   "passenger": { "version": "3.0.19",

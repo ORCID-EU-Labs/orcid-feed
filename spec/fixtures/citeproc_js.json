@@ -1,0 +1,132 @@
+[
+  {
+    "title": "Correction and Clarifications",
+    "volume": "9",
+    "URL": "http://dx.doi.org/10.5555/3030303030x",
+    "DOI": "10.5555/3030303030x",
+    "issue": "11",
+    "container-title": "Journal of Psychoceramics",
+    "publisher": "CrossRef test user",
+    "author": [
+      {
+        "family": "Carberry",
+        "given": "Josiah"
+      }
+    ],
+    "page": "1-3",
+    "id": "carberry2012a",
+    "type": "article-journal",
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          12
+        ]
+      ]
+    }
+  },
+  {
+    "title": "The Memory Bus Considered Harmful",
+    "volume": "9",
+    "URL": "http://dx.doi.org/10.5555/666655554444",
+    "DOI": "10.5555/666655554444",
+    "issue": "11",
+    "container-title": "Journal of Psychoceramics",
+    "publisher": "CrossRef test user",
+    "author": [
+      {
+        "family": "Carberry",
+        "given": "Josiah"
+      }
+    ],
+    "page": "1-3",
+    "id": "carberry2012b",
+    "type": "article-journal",
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          10
+        ]
+      ]
+    }
+  },
+  {
+    "title": "The Impact of Interactive Epistemologies on Cryptography",
+    "volume": "8",
+    "URL": "http://dx.doi.org/10.5555/987654321",
+    "DOI": "10.5555/987654321",
+    "issue": "11",
+    "container-title": "Journal of Psychoceramics",
+    "publisher": "CrossRef test user",
+    "author": [
+      {
+        "family": "Carberry",
+        "given": "Josiah"
+      }
+    ],
+    "page": "1-3",
+    "id": "carberry2011a",
+    "type": "article-journal",
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          10
+        ]
+      ]
+    }
+  },
+  {
+    "title": "Developing Thin Clients Using Amphibious Epistemologies",
+    "volume": "5",
+    "URL": "http://dx.doi.org/10.5555/12345679",
+    "DOI": "10.5555/12345679",
+    "issue": "11",
+    "container-title": "Journal of Psychoceramics",
+    "publisher": "CrossRef test user",
+    "author": [
+      {
+        "family": "Carberry",
+        "given": "Josiah"
+      }
+    ],
+    "page": "1-3",
+    "id": "carberry2008a",
+    "type": "article-journal",
+    "issued": {
+      "date-parts": [
+        [
+          2008,
+          2
+        ]
+      ]
+    }
+  },
+  {
+    "title": "Toward a Unified Theory of High-Energy Metaphysics: Silly String Theory",
+    "volume": "5",
+    "URL": "http://dx.doi.org/10.5555/12345678",
+    "DOI": "10.5555/12345678",
+    "issue": "11",
+    "container-title": "Journal of Psychoceramics",
+    "publisher": "CrossRef test user",
+    "author": [
+      {
+        "family": "Carberry",
+        "given": "Josiah"
+      }
+    ],
+    "page": "1-3",
+    "id": "carberry2008b",
+    "type": "article-journal",
+    "issued": {
+      "date-parts": [
+        [
+          2008,
+          8
+        ]
+      ]
+    }
+  }
+]
