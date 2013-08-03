@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+require "rack/cache"
 require 'sinatra'
 require 'sinatra/config_file'
 require 'sinatra/respond_to'
@@ -14,6 +15,7 @@ require 'citeproc'
 require 'multi_json'
 
 Sinatra::Application.register Sinatra::RespondTo
+use Rack::Cache
 
 require_relative 'lib/helpers'
 require_relative 'lib/profile'
@@ -37,6 +39,10 @@ end
 
 configure :development do
   enable :raise_errors, :dump_errors
+end
+
+before do
+  cache_control :public, :must_revalidate, :max_age => 60
 end
 
 get '/' do
