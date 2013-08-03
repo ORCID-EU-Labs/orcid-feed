@@ -15,7 +15,7 @@ Content negotiation allows a user to request a particular representation of a we
 
 ### Accept Header
 
-Making a content negotiated request requires the use of a HTTP header, "Accept", with a content type that is acceptable to the client ( that it knows how to parse). For example, a client that wishes to receive citeproc JSON would make a request with an Accept header "application/json":
+Making a content negotiated request requires the use of a HTTP header, `Accept`, with a content type that is acceptable to the client ( that it knows how to parse). For example, a client that wishes to receive citeproc JSON would make a request with an Accept header `application/json`:
 
 
     $ curl -LH "Accept: application/json" http://feed.labs.orcid-eu.org/0000-0002-1825-0097
@@ -102,7 +102,7 @@ ORCID Feed supports formatted citations via the text/bibliography content type. 
 
 ## Are the data the same as in the response from the ORCID API?
 
-Almost. ORCID Feed removes duplicate works based on `title` and `year. And it doesn't use all information received from the ORCID API, the focus is on structured bibliographic metadata.
+Almost. ORCID Feed removes duplicate works based on `title` and `year`. And it doesn't use all information received from the ORCID API, the focus is on structured bibliographic metadata.
 
 ## Getting Help
 
