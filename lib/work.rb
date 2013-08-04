@@ -4,9 +4,9 @@ class Work < BibTeX::Entry
 
   attr_accessor :doi, :url, :number, :volume, :pages
 
-  WORK_TYPES = { article:       "journal-article", 
-                 inproceedings: "conference-proceedings",
-                 misc:          "other" } 
+  WORK_TYPES = { article:       "JOURNAL_ARTICLE",
+                 inproceedings: "CONFERENCE_PROCEEDINGS",
+                 misc:          "OTHER" }
 
 
   def initialize(work, author)
@@ -29,7 +29,7 @@ class Work < BibTeX::Entry
 
       super({:type => type,
       	     :title => title,
-             :author => author}) 
+             :author => author})
 
       # Optional attributes
       self.journal = work["work-title"]["subtitle"]["value"] if work["work-title"]["subtitle"]
@@ -38,8 +38,8 @@ class Work < BibTeX::Entry
 
     if work["work-external-identifiers"] and work["work-external-identifiers"]["work-external-identifier"] and work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-type"].upcase == "DOI"
       doi = work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-id"]["value"]
-      self.doi = doi 
-      self.url = "http://dx.doi.org/#{doi}"
+      self["doi"] = doi
+      self["url"] = "http://dx.doi.org/#{doi}"
     end
   end
 
