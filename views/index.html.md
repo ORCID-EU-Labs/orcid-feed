@@ -100,6 +100,10 @@ ORCID Feed supports formatted citations via the text/bibliography content type. 
     Carberry, J. (2008). Developing Thin Clients Using Amphibious Epistemologies. Journal of Psychoceramics, 5(11), 1-3. doi:10.5555/12345679
     Carberry, J. (2008). Toward a Unified Theory of High-Energy Metaphysics: Silly String Theory. Journal of Psychoceramics, 5(11), 1-3. doi:10.5555/12345678
 
+## Cross-origin resource sharing (CORS)
+
+ORCID Feed uses [CORS](http://enable-cors.org/) to enable cross-domain Javascript requests. This allows you to include the Citeproc JSON response directly into your javascripts.
+
 ## Are the data the same as in the response from the ORCID API?
 
 Almost. ORCID Feed removes duplicate works based on `title` and `year`. And it doesn't use all information received from the ORCID API, the focus is on structured bibliographic metadata.
