@@ -55,7 +55,7 @@ get '/:orcid' do
   end
 
   respond_to do |format|
-    format.html { redirect "http://orcid.org/#{params[:orcid]}", 301 }
+    #format.html { redirect "http://orcid.org/#{params[:orcid]}", 301 }
     format.rss { builder :show }
     format.bib { @profile.to_bib }
     format.xml { @profile.to_xml }

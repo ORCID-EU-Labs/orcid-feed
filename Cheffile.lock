@@ -5,6 +5,8 @@ SITE
     apt (1.7.0)
     build-essential (1.3.2)
     chef_handler (1.1.4)
+    chocolatey (0.0.5)
+      powershell (>= 0.0.0)
     dmg (1.1.0)
     git (2.1.4)
       build-essential (>= 0.0.0)
@@ -12,25 +14,20 @@ SITE
       runit (<= 0.16.2)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
-    phantomjs (0.0.10)
+    phantomjs (1.0.2)
+      build-essential (>= 0.0.0)
+      chocolatey (>= 0.0.0)
+    powershell (1.1.0)
+      windows (>= 1.2.8)
     runit (0.16.2)
     windows (1.10.0)
       chef_handler (>= 0.0.0)
     yum (2.3.0)
 
 GIT
-  remote: https://github.com/articlemetrics/passenger_apache2.git
-  ref: articlemetrics
-  sha: 28f0d174e1e55e6df2366a7c4169ffc56604091f
-  specs:
-    passenger_apache2 (1.1.0)
-      apache2 (>= 1.0.4)
-      build-essential (>= 0.0.0)
-
-GIT
-  remote: https://github.com/mfenner/orcid-feed-cookbook.git
+  remote: https://github.com/ORCID-EU-Labs/orcid-feed-cookbook.git
   ref: master
-  sha: 102d26c155e0358c36ee0e74a835ba2b97cefb80
+  sha: f761f3f7e062a6e77c3c8ca70b96c481230e6778
   specs:
     orcid-feed (1.0.0)
       apt (>= 0.0.0)
@@ -39,11 +36,19 @@ GIT
       passenger_apache2 (>= 0.0.0)
       phantomjs (>= 0.0.0)
 
+GIT
+  remote: https://github.com/ORCID-EU-Labs/passenger_apache2.git
+  ref: articlemetrics
+  sha: 28f0d174e1e55e6df2366a7c4169ffc56604091f
+  specs:
+    passenger_apache2 (1.1.0)
+      apache2 (>= 1.0.4)
+      build-essential (>= 0.0.0)
+
 DEPENDENCIES
   apt (= 1.7.0)
   build-essential (= 1.3.2)
   git (= 2.1.4)
   orcid-feed (>= 0)
   passenger_apache2 (>= 0)
-  phantomjs (= 0.0.10)
 
