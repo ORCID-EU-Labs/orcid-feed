@@ -21,18 +21,21 @@ class Work < BibTeX::Entry
         entry.author = entry.author.gsub(",", " and ")
       end
 
+      # Fix missing title
+      entry.title = "No title" unless entry.title
+
       super(entry.fields)
       self.type = entry.type
   	else
     	type = WORK_TYPES.key(work["work-type"]) || :misc
-    	title = work["work-title"]["title"]["value"]
+    	title = work["work-title"] ? work["work-title"]["title"]["value"] : "No title"
 
       super({:type => type,
       	     :title => title,
              :author => author})
 
       # Optional attributes
-      self.journal = work["work-title"]["subtitle"]["value"] if work["work-title"]["subtitle"]
+      self.journal = work["work-title"]["subtitle"]["value"] if work["work-title"] and work["work-title"]["subtitle"]
       self.year = work["publication-date"]["year"]["value"] if work["publication-date"]
     end
 
