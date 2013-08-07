@@ -40,6 +40,11 @@ class Profile
     #   result["orcid-activities"]["orcid-works"]["orcid-work"].each { |work| @works << Work.new(work, reversed_name) }
     # end
 
+    # @works.uniq!
+    #(:year, :title) do |digest, entry|
+    #  digest << entry.author.map { |a| [a.family, a.initials].join }.join
+    #end
+
     # Use full name in bibliography
     @works.extend_initials [given_names, family_name]
   end

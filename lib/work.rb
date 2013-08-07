@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'addressable/uri'
+
 class Work < BibTeX::Entry
 
   attr_accessor :doi, :url, :number, :volume, :pages
@@ -42,7 +44,7 @@ class Work < BibTeX::Entry
     if work["work-external-identifiers"] and work["work-external-identifiers"]["work-external-identifier"] and work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-type"].upcase == "DOI"
       doi = work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-id"]["value"]
       self["doi"] = doi
-      self["url"] = "http://dx.doi.org/#{doi}"
+      self["url"] = Addressable::URI.escape "http://dx.doi.org/#{doi}"
     end
   end
 

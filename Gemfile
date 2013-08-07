@@ -8,7 +8,8 @@ gem 'faraday_middleware'
 gem 'nokogiri'
 gem 'builder'
 gem 'rdiscount'
-gem "bibtex-ruby", "2.3.2"
+#gem "bibtex-ruby", "2.3.2"
+gem 'bibtex-ruby', :git => 'git://github.com/inukshuk/bibtex-ruby.git'
 gem 'rdf'
 gem "latex-decode"
 gem 'multi_json'
@@ -19,6 +20,7 @@ gem "racksh"
 gem 'chronic'
 gem 'edtf'
 gem 'rack-cache'
+gem 'addressable'
 
 gem "rspec"
 gem "rack-test"
