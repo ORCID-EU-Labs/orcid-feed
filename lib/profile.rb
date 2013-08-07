@@ -70,7 +70,14 @@ class Profile
   end
 
   def to_yaml
-    to_bib.to_citeproc.to_yaml
+    { "orcid" => orcid,
+      "created_at" => created_at.to_s,
+      "updated_at" => updated_at.to_s,
+      "biography" => biography,
+      "given_names" => given_names,
+      "family_name" => family_name,
+      "references" => to_bib.to_citeproc
+    }.to_yaml
   end
 
 end
