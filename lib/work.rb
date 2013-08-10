@@ -43,7 +43,7 @@ class Work < BibTeX::Entry
 
     if work["work-external-identifiers"] and work["work-external-identifiers"]["work-external-identifier"] and work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-type"].upcase == "DOI"
       doi = work["work-external-identifiers"]["work-external-identifier"][0]["work-external-identifier-id"]["value"]
-      doi = doi.gsub(/(?i:DOI):\s?(10\.\S+)/, '\1').strip
+      doi = doi.gsub(/(?i:DOI):?\s?(10\.\S+)/, '\1').strip
       self["doi"] = doi
       self["url"] = Addressable::URI.escape "http://dx.doi.org/#{doi}"
     end
