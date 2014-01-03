@@ -33,6 +33,7 @@ class Profile
     else
       works = ""
     end
+
     @works = BibTeX.parse(works)
 
     # @works = Bibliography.new

@@ -10,12 +10,12 @@ class Work < BibTeX::Entry
                  inproceedings: "CONFERENCE_PROCEEDINGS",
                  misc:          "OTHER" }
 
-
+  
   def initialize(work, author)
     # if work is already in bibtex format
-  	if work["work-citation"] and work["work-citation"]["work-citation-type"].upcase == "BIBTEX"
+    if work["work-citation"] and work["work-citation"]["work-citation-type"].upcase == "BIBTEX"
       entry = BibTeX.parse(work["work-citation"]["citation"])[0]
-
+      
       # Fix missing or malformed author field
       entry.author = author if entry.author.to_s == ""
       entry.author.gsub!(";", "")

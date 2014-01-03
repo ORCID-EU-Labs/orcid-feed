@@ -21,6 +21,8 @@ gem 'chronic'
 gem 'edtf'
 gem 'rack-cache'
 gem 'addressable'
+gem 'log4r'
+gem 'awesome_print'
 
 gem "rspec"
 gem "rack-test"
