@@ -73,33 +73,23 @@ get '/:orcid' do
   respond_to do |format|
     format.html do
       citations = ""
-      # ToDo: optimize, create processor & fetch CSL style beforehand, instead of repeating for each work
       style = get_csl(params[:style])
       @profile.works.map do |work|
         
+        #  ToDo??  Fetch authoritative metadata from central DOI resolver ? 
         # if doi = work.doi
-        #   # Fetch authoritative metadata from central DOI resolver
 
         #  # Figure out from which RA (registration authority) this DOI comes
         #   prefix = doi =~ /(\d+\.\d+)
         #   Faraday.get "http://dev.datacite.org/doi-ra/prefix/" + doi_prefix
 
-
         #   # TODO! need caching here, probably store previous lookups in MongoDb 
-
         # end
 
-        # TODO if user asks for it, use basic heuristics to use some useful URL (ideally DOI one, otherwise
-        # the work.url attribute) to hyperlink the work title.
         citation = CiteProc.process(work.to_citeproc, :format => 'html', :style => style)
-        if work.respond_to? :doi or work.respond_to? :url
-          url = "" 
-          if work.respond_to? :doi 
-            url = 'http://dx.doi.org/' + work.doi 
-          else
-            url = work.url
-          end
-          citation.gsub! work.title, '<a href="' + url + '">' + work.title + '</a>'
+        if work.respond_to? :url and !work.url.nil?
+          logger.debug "hyperlinking work title '" + work.title + "' to " + work.url
+          citation.gsub! work.title, '<a href="' + work.url + '">' + work.title + '</a>'
         end
         citations += '<div class="csl-entry '+ work.type.to_s + '">' + citation + "  </div>\n"
      end
@@ -108,19 +98,28 @@ get '/:orcid' do
       citations.gsub! /doi:(10\.\d+\/\S+)/i, '<a href="http://dx.doi.org/\1">doi:\1</a>'
       
 
-      # Finally return bibliography to caller, with JSONP wrapper if required
+      # Finally return bibliography markup to caller, with JSONP wrapper if required
       citations = '<div class="hangindent csl-bib-body">' + citations + '</div>'
       if callback = params[:callback]
         citations = callback + '({"html" : ' + JSON.generate(citations, quirks_mode: true) + '})'
       end
       return citations
     end
-    format.rss { builder :show }
-    format.bib { @profile.to_bib }
-    format.xml { @profile.to_xml }
+
+    format.txt do
+      citations = ""
+      style = get_csl(params[:style])
+      @profile.works.map do |work|
+        citations += CiteProc.process(work.to_citeproc, :style => style) + "\n"
+      end
+      return citations
+    end
+
+    format.rss  { builder :show }
+    format.bib  { @profile.to_bib }
+    format.xml  { @profile.to_xml }
     format.json { @profile.to_json }
-    format.yml { @profile.to_yaml }
-    format.txt { @profile.works.map { |work| CiteProc.process(work.to_citeproc, :style => get_csl(params[:style])) }.join("\n") }
+    format.yml  { @profile.to_yaml }
   end
 end
 
