@@ -1,4 +1,11 @@
+require 'log4r'
+
 helpers do
+
+  def logger
+    Log4r::Logger['test']    
+  end
+  
   def h(text)
     Rack::Utils.escape_html(text)
   end
@@ -10,6 +17,7 @@ helpers do
   def get_csl(style)
     return "apa" if ["apa", "", nil].include? style
 
+    logger.debug "retrieving #{style} style from zotero.org"
     response = Faraday.get "http://www.zotero.org/styles/#{style}"
     return "apa" unless response.status == 200
 

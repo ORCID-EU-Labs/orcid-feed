@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 
+require 'log4r'
+
+
 class Profile
 
   attr_accessor :orcid, :created_at, :updated_at, :biography, :given_names, :family_name, :name, :credit_name, :other_names, :reversed_name, :works, :a
+
+  def logger
+    Log4r::Logger['test']    
+  end
 
   def initialize(orcid)
     conn = Faraday.new(:url => 'http://pub.orcid.org') do |c|
@@ -19,6 +26,7 @@ class Profile
     return nil unless response.status == 200
     result = response.body['orcid-profile']
 
+    # Grab bio information from ORCID profile
     @orcid = orcid
     @created_at = Time.at(result['orcid-history']['submission-date']['value']/1000).utc.to_datetime
     @updated_at =Time.at(result['orcid-history']['last-modified-date']['value']/1000).utc.to_datetime
@@ -27,21 +35,18 @@ class Profile
     @family_name = result['orcid-bio']['personal-details']["family-name"].nil? ? "" : result['orcid-bio']['personal-details']["family-name"]["value"]
     @credit_name = result['orcid-bio']['personal-details']['credit-name'] ? result['orcid-bio']['personal-details']['credit-name']['value'] : nil
 
+    # Construct bibliography based on biblio info from  profile
+    @works = Bibliography.new
     if result["orcid-activities"] and result["orcid-activities"]["orcid-works"]["orcid-work"]
-      works = result["orcid-activities"]["orcid-works"]["orcid-work"].map { |work| Work.new(work, reversed_name) }.uniq
-      works = works.join("\n")
-    else
-      works = ""
+      result["orcid-activities"]["orcid-works"]["orcid-work"].each do |work| 
+        @works << Work.new(work, reversed_name) 
+      end
     end
+    
+    # @works = BibTeX.parse(works)
+    logger.debug "got final collection of works from profile: " + @works.ai
 
-    @works = BibTeX.parse(works)
-
-    # @works = Bibliography.new
-    # if result["orcid-activities"] and result["orcid-activities"]["orcid-works"]["orcid-work"]
-    #   result["orcid-activities"]["orcid-works"]["orcid-work"].each { |work| @works << Work.new(work, reversed_name) }
-    # end
-
-    # @works.uniq!
+    @works.uniq!
     #(:year, :title) do |digest, entry|
     #  digest << entry.author.map { |a| [a.family, a.initials].join }.join
     #end
